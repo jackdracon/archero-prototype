@@ -7,11 +7,17 @@ using UnityEngine;
 /// </summary>
 public abstract class Entity : MonoBehaviour, IEntity
 {
+    [Tooltip("Distance to player")]
+    public float distance = 2f;
+
     [SerializeField, Tooltip("Entity's life")]
     private float life;
 
     [SerializeField, Tooltip("Current state from object")]
     private STATE currentState;
+
+    //Flag to enable the shot command  action
+    public bool canShoot = false;
 
     //Move from a start position to a target position
     public virtual void MoveTo(Vector3 _startPosition, Vector3 _targetDestination){}
@@ -21,7 +27,15 @@ public abstract class Entity : MonoBehaviour, IEntity
     {
         Vector3 _toLook = Vector3.RotateTowards(transform.forward, _lookValue, 5 * Time.deltaTime, 0f);
         transform.rotation = Quaternion.LookRotation(_toLook);
-        Debug.Log("Rotate To - " + _toLook.ToString());
+    }
+
+    //Shot Target virtual object
+    public virtual void ShotTarget(Transform _target) { }
+    
+    //Trigget the shot 
+    private void OnTriggerEnter(Collider other)
+    {
+        //receive the shot
     }
 
     ///Damage received affected in life value

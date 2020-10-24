@@ -14,23 +14,57 @@ public class Player : Entity
     //Coroutine applied to smooth the object
     private Coroutine smoothMoveCoroutine;
 
+    //Target direction
     private Vector3? targetPosition;
 
     private void Awake()
     {
-        input = GetComponent<InputReader>();        
+        input = GetComponent<InputReader>();
+        canShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+
+        if(CurrentState == STATE.STANDING)
+            OnShot();
+    }
+
+    //Closest Enemy to player
+    Enemy SeekClosestEnemy()
+    {
+        var _aliveEnemies = GameObject.FindObjectsOfType<Enemy>();
+        Enemy _closestEnemy = null;
+        foreach (Enemy _enemy in _aliveEnemies)
+        {
+            float enemyDistance = Vector3.Distance(transform.position, _enemy.transform.position);
+            if(enemyDistance < distance)
+            {
+                _closestEnemy = _enemy;
+            }
+        }
+
+        return _closestEnemy;
+    }
+    //Shot action to apply the shot command when its possible to shoot and found a closest enemy
+    private void OnShot()
+    {
+        if (canShoot)
+        {
+            Enemy _currentTarget = SeekClosestEnemy();
+            if (_currentTarget)
+            {
+                ShotCommand _shotCommand = new ShotCommand(this, _currentTarget.transform);
+                _shotCommand.Execute();
+            }
+        }
     }
 
     //Move object
     void Move()
     {
-        //var _position = input.MoveInput();
         targetPosition = input.MoveInput();
         if (targetPosition != null)
         {
