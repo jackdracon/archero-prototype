@@ -13,10 +13,15 @@ public abstract class Entity : MonoBehaviour, IEntity
     [SerializeField, Tooltip("Current state from object")]
     private STATE currentState;
 
+    //Move from a start position to a target position
+    public virtual void MoveTo(Vector3 _startPosition, Vector3 _targetDestination){}
+
     //Look to a specific direction when that get a object to look
-    public virtual void LookTo(Transform _lookValue)
+    public virtual void LookTo(Vector3 _lookValue)
     {
-        this.transform.LookAt(_lookValue);
+        Vector3 _toLook = Vector3.RotateTowards(transform.forward, _lookValue, 5 * Time.deltaTime, 0f);
+        transform.rotation = Quaternion.LookRotation(_toLook);
+        Debug.Log("Rotate To - " + _toLook.ToString());
     }
 
     ///Damage received affected in life value

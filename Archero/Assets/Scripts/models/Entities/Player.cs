@@ -11,8 +11,11 @@ public class Player : Entity
     //Input Reader values
     private InputReader input;
 
-    //Apply the moviment updates to the object
-    private MoveCommand moveCommand;
+    //Coroutine applied to smooth the object
+    private Coroutine smoothMoveCoroutine;
+
+    private Vector3? targetPosition;
+
     private void Awake()
     {
         input = GetComponent<InputReader>();        
@@ -27,13 +30,37 @@ public class Player : Entity
     //Move object
     void Move()
     {
-        var _position = input.MoveInput();
-        if (_position != null)
+        //var _position = input.MoveInput();
+        targetPosition = input.MoveInput();
+        if (targetPosition != null)
         {
-            Debug.Log("Pos Received " + _position.Value);
-            var _move = new MoveCommand(_position.Value, this);
+            var _move = new MoveCommand(targetPosition.Value, this);
             _move.Execute();
         }
     }
 
+    //override the original method related to make moviment
+    public override void MoveTo(Vector3 _startPosition, Vector3 _targetDestination)
+    {
+        if (smoothMoveCoroutine != null)
+            StopCoroutine(smoothMoveCoroutine);
+        
+        CurrentState = STATE.WALKING;
+
+        smoothMoveCoroutine = StartCoroutine(SmoothMoveAsync(_startPosition, _targetDestination));
+    }
+
+    //Async method related to apply a smooth moviment
+    private IEnumerator SmoothMoveAsync(Vector3 _from, Vector3 _to)
+    {
+        float _elapsed = 0;
+        while(_elapsed < 1f)
+        {
+            transform.position = Vector3.Lerp(_from, _to, _elapsed);
+            _elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = _to;
+        CurrentState = STATE.STANDING;
+    }
 }
