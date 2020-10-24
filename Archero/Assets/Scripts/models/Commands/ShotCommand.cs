@@ -16,7 +16,6 @@ public class ShotCommand : Command
     //Execute the shot command by passing the target object
     public override void Execute()
     {
-        //entity.ShotTarget(targetObj);
-        Debug.Log(entity.transform.gameObject.name + " @ Shoot on - " + targetObj.gameObject.name);
+        entity.ShotTarget(targetObj);
     }
 }

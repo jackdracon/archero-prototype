@@ -310,7 +310,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499472574}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -329,11 +329,25 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034442305}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2034442307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034442305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8577b426f23bf9458cbb0a227f2f209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 7112464544980631605, guid: 305e3f109b53b11448e9099d08511929, type: 3}
+  weaponInfo: {fileID: 11400000, guid: 9b3615644f43c5f4583e693eafb70b20, type: 2}
 --- !u!1001 &1395740080780360847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -480,6 +494,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4698997865546607274, guid: faf02f084e0acaf4389596bdade86e00,
+        type: 3}
+      propertyPath: weaponInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 6342c884e1288c340899fb3dca8fe419,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faf02f084e0acaf4389596bdade86e00, type: 3}
 --- !u!1001 &4841189229937145671
@@ -489,6 +509,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 333726600, guid: 76965a45cd699f840b0f76d64730734c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4841189229516995365, guid: 76965a45cd699f840b0f76d64730734c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -551,6 +575,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76965a45cd699f840b0f76d64730734c, type: 3}
+--- !u!1 &4841189229937145672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4841189229516995366, guid: 76965a45cd699f840b0f76d64730734c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4841189229937145671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4841189229937145673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841189229937145672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8577b426f23bf9458cbb0a227f2f209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 7112464544980631605, guid: 305e3f109b53b11448e9099d08511929, type: 3}
+  weaponInfo: {fileID: 11400000, guid: f8d78285e644ed746b669a20ab3a80c7, type: 2}
 --- !u!1001 &5681284809211222770
 PrefabInstance:
   m_ObjectHideFlags: 0

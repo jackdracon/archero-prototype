@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\controllers\GameManager.cs" />
     <Compile Include="Assets\Scripts\models\Commands\Command.cs" />
     <Compile Include="Assets\Scripts\models\Commands\MoveCommand.cs" />
     <Compile Include="Assets\Scripts\models\Commands\ShotCommand.cs" />
@@ -71,6 +72,9 @@
     <Compile Include="Assets\Scripts\models\Entities\IEntity.cs" />
     <Compile Include="Assets\Scripts\models\Entities\Player.cs" />
     <Compile Include="Assets\Scripts\models\Input\InputReader.cs" />
+    <Compile Include="Assets\Scripts\models\Items\Bullet.cs" />
+    <Compile Include="Assets\Scripts\models\Items\Weapon.cs" />
+    <Compile Include="Assets\Scripts\models\Items\WeaponInfo.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

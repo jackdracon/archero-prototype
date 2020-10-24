@@ -22,13 +22,6 @@ public abstract class Entity : MonoBehaviour, IEntity
     //Move from a start position to a target position
     public virtual void MoveTo(Vector3 _startPosition, Vector3 _targetDestination){}
 
-    //Look to a specific direction when that get a object to look
-    public virtual void LookTo(Vector3 _lookValue)
-    {
-        Vector3 _toLook = Vector3.RotateTowards(transform.forward, _lookValue, 5 * Time.deltaTime, 0f);
-        transform.rotation = Quaternion.LookRotation(_toLook);
-    }
-
     //Shot Target virtual object
     public virtual void ShotTarget(Transform _target) { }
     

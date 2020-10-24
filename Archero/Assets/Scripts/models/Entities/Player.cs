@@ -11,6 +11,9 @@ public class Player : Entity
     //Input Reader values
     private InputReader input;
 
+    //Current Weapon to be used
+    private Weapon myWeapon;
+
     //Coroutine applied to smooth the object
     private Coroutine smoothMoveCoroutine;
 
@@ -19,6 +22,7 @@ public class Player : Entity
 
     private void Awake()
     {
+        myWeapon = GetComponent<Weapon>();
         input = GetComponent<InputReader>();
         canShoot = true;
     }
@@ -58,6 +62,9 @@ public class Player : Entity
             {
                 ShotCommand _shotCommand = new ShotCommand(this, _currentTarget.transform);
                 _shotCommand.Execute();
+                
+                //look to the current enemy
+                transform.LookAt(_currentTarget.transform);
             }
         }
     }
@@ -97,4 +104,14 @@ public class Player : Entity
         transform.position = _to;
         CurrentState = STATE.STANDING;
     }
+
+    //Shot on target 
+    public override void ShotTarget(Transform _target)
+    {
+        if (myWeapon)
+        {
+            myWeapon.Shot();
+        }
+    }
+
 }

@@ -9,11 +9,13 @@ public class Enemy : Entity
 {
     //Player entity reference
     private Player playerEntity;
+    
+    //Weapon 
+    private Weapon myWeapon;
 
     private void Start()
     {
-        playerEntity = GameObject.FindObjectOfType<Player>();
-        
+        playerEntity = GameObject.FindObjectOfType<Player>();    
     }
 
     private void Update()
@@ -25,6 +27,8 @@ public class Enemy : Entity
             {
                 var _shotCommand = new ShotCommand(this, playerEntity.transform);
                 _shotCommand.Execute();
+
+                transform.LookAt(playerEntity.transform);
             }
         }
     }
@@ -32,7 +36,9 @@ public class Enemy : Entity
     //Shot on target 
     public override void ShotTarget(Transform _target)
     {
-        canShoot = false;
-
+        if (myWeapon)
+        {
+            myWeapon.Shot();
+        }
     }
 }
