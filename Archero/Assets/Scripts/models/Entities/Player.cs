@@ -8,9 +8,11 @@ using UnityEngine;
 [RequireComponent(typeof(InputReader))]
 public class Player : Entity
 {
-
+    //Input Reader values
     private InputReader input;
 
+    //Apply the moviment updates to the object
+    private MoveCommand moveCommand;
     private void Awake()
     {
         input = GetComponent<InputReader>();        
@@ -19,12 +21,19 @@ public class Player : Entity
     // Update is called once per frame
     void Update()
     {
-        var _position = input.GetClickPosition();
+        Move();
+    }
+
+    //Move object
+    void Move()
+    {
+        var _position = input.MoveInput();
         if (_position != null)
         {
             Debug.Log("Pos Received " + _position.Value);
-            this.transform.SetPositionAndRotation(_position.Value, Quaternion.identity);
+            var _move = new MoveCommand(_position.Value, this);
+            _move.Execute();
         }
-            
     }
+
 }

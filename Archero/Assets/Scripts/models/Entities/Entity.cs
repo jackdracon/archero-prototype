@@ -5,13 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Entity's general information
 /// </summary>
-public abstract class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour, IEntity
 {
     [SerializeField, Tooltip("Entity's life")]
     private float life;
-
-    [SerializeField, Tooltip("Entity's name")]
-    private string name;
 
     [SerializeField, Tooltip("Current state from object")]
     private STATE currentState;
