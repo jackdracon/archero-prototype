@@ -108,10 +108,9 @@ public class Player : Entity
     //Shot on target 
     public override void ShotTarget(Transform _target)
     {
-        if (myWeapon)
+        if (myWeapon.weaponStatus == WEAPONSTATUS.STAND)
         {
             myWeapon.Shot();
         }
     }
-
 }

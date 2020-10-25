@@ -17,6 +17,7 @@ public abstract class Entity : MonoBehaviour, IEntity
     private STATE currentState;
 
     //Flag to enable the shot command  action
+    [HideInInspector]
     public bool canShoot = false;
 
     //Move from a start position to a target position

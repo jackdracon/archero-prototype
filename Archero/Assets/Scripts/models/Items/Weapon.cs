@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//
+//Weapon Component that is responsable to create object and control's weapon creation
 public class Weapon : MonoBehaviour
 {
-    [SerializeField, Tooltip("Bullet prefab that will be created")]
-    private GameObject bullet;
-
     [SerializeField, Tooltip("Weapon's information that will be used ")]
     private WeaponInfo weaponInfo;
 
@@ -15,17 +12,35 @@ public class Weapon : MonoBehaviour
     private WeaponInfo currentWeaponInfo;
 
     //amount time that enable to fire
-    private float rechargingValue = 0;
+    private float accumRecharge = 0;
 
+    //Entity component 
+    private Entity entityComp;
+
+    //Weapon status 
+    public WEAPONSTATUS weaponStatus = WEAPONSTATUS.STAND;
     private void Awake()
     {
-        currentWeaponInfo = weaponInfo;
+        SetWeaponInfo(weaponInfo);
+
+        entityComp = GetComponent<Entity>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(weaponStatus == WEAPONSTATUS.FIRE)
+        {
+            accumRecharge += Time.deltaTime;
+            if (accumRecharge >= currentWeaponInfo.GetRechargeVelocity)
+            {
+                Debug.Log("Shot");
+                entityComp.canShoot = true;
+
+                accumRecharge = 0;
+                weaponStatus = WEAPONSTATUS.STAND;
+            }
+        }
     }
     
     //Create Shot and add force to
@@ -33,7 +48,8 @@ public class Weapon : MonoBehaviour
     {
         if (currentWeaponInfo)
         {
-            GameObject _bullet = Instantiate(bullet) as GameObject;
+            GameObject instance = currentWeaponInfo.GetBulletPrefabObject;
+            GameObject _bullet = Instantiate(instance) as GameObject;
             Bullet _bulletComp = _bullet.GetComponent<Bullet>();
             Rigidbody _bulletRb = _bullet.GetComponent<Rigidbody>();
 
@@ -41,8 +57,12 @@ public class Weapon : MonoBehaviour
             _bullet.transform.position = newPosition;
 
             _bulletComp.SetDamage(currentWeaponInfo.GetFireForce);
+            _bulletComp.SetLife(currentWeaponInfo.GetBulletLife);
 
             _bulletRb.AddForce(transform.forward * currentWeaponInfo.GetSpeed);
+            
+            entityComp.canShoot = false;
+            weaponStatus = WEAPONSTATUS.FIRE;
         }
     }
 
@@ -50,5 +70,12 @@ public class Weapon : MonoBehaviour
     public void SetWeaponInfo(WeaponInfo _info)
     {
         currentWeaponInfo = _info;
+
     }
+}
+
+//Weapon current status 
+public enum WEAPONSTATUS{
+    STAND,
+    FIRE
 }

@@ -15,7 +15,9 @@ public class Enemy : Entity
 
     private void Start()
     {
-        playerEntity = GameObject.FindObjectOfType<Player>();    
+        myWeapon = GetComponent<Weapon>();
+        playerEntity = GameObject.FindObjectOfType<Player>();
+        canShoot = true;
     }
 
     private void Update()
@@ -36,7 +38,7 @@ public class Enemy : Entity
     //Shot on target 
     public override void ShotTarget(Transform _target)
     {
-        if (myWeapon)
+        if (myWeapon.weaponStatus == WEAPONSTATUS.STAND)
         {
             myWeapon.Shot();
         }

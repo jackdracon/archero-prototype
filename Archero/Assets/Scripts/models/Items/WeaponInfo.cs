@@ -18,6 +18,9 @@ public class WeaponInfo : ScriptableObject
     [SerializeField, Tooltip("Bullet's lifespan time")]
     private float bulletLifespan;
 
+    [SerializeField, Tooltip("Bullet Object")]
+    private GameObject bulletPrefab;
+
     //Speed's shot when fired
     public float GetSpeed
     {
@@ -34,5 +37,17 @@ public class WeaponInfo : ScriptableObject
     public float GetFireForce
     {
         get { return fireForce; }
+    }
+
+    //Bullet's lifespan to control the duration
+    public float GetBulletLife
+    {
+        get { return bulletLifespan; }
+    }
+
+    //Bullet prefab object
+    public GameObject GetBulletPrefabObject
+    {
+        get { return bulletPrefab; }
     }
 }
