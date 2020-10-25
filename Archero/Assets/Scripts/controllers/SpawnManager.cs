@@ -38,19 +38,22 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         CreatePlayer();
-
-        foreach (GameObject _spawnPoint in spawnEnemyObjs)
-        {
-            CreateEnemy(_spawnPoint);
-        }
     }
-
 
     //Create Player 
     public void CreatePlayer()
     {
         GameObject _player = Instantiate(player) as GameObject;
         _player.transform.position = spawnPlayer.transform.position;
+    }
+
+    //Create enemies in all spawn point objects
+    public void CreateAllEnemies()
+    {
+        foreach (GameObject _spawnPoint in spawnEnemyObjs)
+        {
+            CreateEnemy(_spawnPoint);
+        }
     }
 
     //CreateEnemy on specific spawn point object
