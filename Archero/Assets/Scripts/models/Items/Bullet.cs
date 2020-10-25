@@ -17,13 +17,12 @@ public class Bullet : MonoBehaviour
     ///When the object collides with someobject
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("COLLISION TO " + collision.contacts[0].otherCollider.name);
         var _other = collision.gameObject.GetComponent<Entity>();
         if (_other)
         {
             _other.Damage(damage);
         }
 
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce9a2e0e80330b4b974bc838784a91a, type: 3}
   m_Name: weapon 1
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 40
   rechargeVelocity: 2
   fireForce: 5
+  bulletLifespan: 0

@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     //current weapon's information to fire
     private WeaponInfo currentWeaponInfo;
 
+    //amount time that enable to fire
     private float rechargingValue = 0;
 
     private void Awake()
@@ -27,7 +28,7 @@ public class Weapon : MonoBehaviour
         
     }
     
-    //Shot
+    //Create Shot and add force to
     public void Shot()
     {
         if (currentWeaponInfo)
@@ -35,8 +36,9 @@ public class Weapon : MonoBehaviour
             GameObject _bullet = Instantiate(bullet) as GameObject;
             Bullet _bulletComp = _bullet.GetComponent<Bullet>();
             Rigidbody _bulletRb = _bullet.GetComponent<Rigidbody>();
-            
-            _bullet.transform.position = transform.position;
+
+            var newPosition = transform.position + (transform.forward * .07f);
+            _bullet.transform.position = newPosition;
 
             _bulletComp.SetDamage(currentWeaponInfo.GetFireForce);
 

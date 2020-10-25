@@ -34,8 +34,10 @@ public abstract class Entity : MonoBehaviour, IEntity
     ///Damage received affected in life value
     public virtual void Damage(float _hit)
     {
+        Debug.Log("DAMAGE - " + _hit);
         life -= _hit;
-        if (life < 0) life = 0;
+        if (life <= 0)
+            Destroy(this.gameObject);
     }
 
     ///If the object's life is 0, it's dead;
