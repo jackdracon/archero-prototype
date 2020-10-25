@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9198922659611819459}
   - component: {fileID: 2589762624407342179}
   m_Layer: 0
-  m_Name: Enemy-Ghost
+  m_Name: Enemy-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a8edae83df38f439bff834e4b57480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 2
-  life: 0
+  distance: 0.2
+  life: 20
   currentState: 0
   canShoot: 0
 --- !u!114 &2589762624407342179

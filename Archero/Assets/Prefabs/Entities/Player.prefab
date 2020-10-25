@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3411368072514162366}
   - component: {fileID: 537900788803736325}
   - component: {fileID: 4698997865546607274}
+  - component: {fileID: 5171315183614378930}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0f215b67faf504eaf34e1f0694fc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 2
-  life: 0
+  distance: 0.5
+  life: 80
   currentState: 0
   canShoot: 0
 --- !u!114 &537900788803736325
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 6342c884e1288c340899fb3dca8fe419, type: 2}
   weaponStatus: 0
+--- !u!65 &5171315183614378930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126216089423934499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7254818048738511199
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 333726600}
   - component: {fileID: 6162716681834260316}
   m_Layer: 0
-  m_Name: Enemy-Polywag
+  m_Name: Enemy-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a8edae83df38f439bff834e4b57480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.5
-  life: 0
+  distance: 0.4
+  life: 45
   currentState: 0
   canShoot: 0
 --- !u!135 &333726600
