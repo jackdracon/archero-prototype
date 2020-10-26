@@ -34,7 +34,6 @@ public class Weapon : MonoBehaviour
             accumRecharge += Time.deltaTime;
             if (accumRecharge >= currentWeaponInfo.GetRechargeVelocity)
             {
-                Debug.Log("Shot");
                 entityComp.canShoot = true;
 
                 accumRecharge = 0;

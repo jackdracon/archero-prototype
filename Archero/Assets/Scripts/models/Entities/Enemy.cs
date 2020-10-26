@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class Enemy : Entity
 {
+    public static event Action<Enemy> OnDie;
+
     //Player entity reference
     private Player playerEntity;
     
@@ -33,6 +36,12 @@ public class Enemy : Entity
                 transform.LookAt(playerEntity.transform);
             }
         }
+    }
+
+    public override void Damage(float _hit)
+    {
+        base.Damage(_hit);
+        OnDie(this);
     }
 
     //Shot on target 

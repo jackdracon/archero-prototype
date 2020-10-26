@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     //instance
     private static GameManager instance;
 
-
     private void Awake()
     {
         if (Instance)
@@ -29,11 +28,16 @@ public class GameManager : MonoBehaviour
         spawn_Manager = FindObjectOfType<SpawnManager>();
     }
 
+    private void Start()
+    {
+        Enemy.OnDie += UpdateKills;
+    }
 
     //Update the current number of kills
-    public void UpdateKills()
+    public void UpdateKills(Enemy _enemy)
     {
         enemiesKill++;
+        Debug.Log("Killed " + enemiesKill);
     }
 
     //Title screen
@@ -46,8 +50,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SetGameStatus(GAMESTATUS.INGAMEPLAY);
-        spawn_Manager.CreatePlayer();
-        
+
+        spawn_Manager.CreateAllEnemies();
+
     }
 
     //End Game update
@@ -63,6 +68,12 @@ public class GameManager : MonoBehaviour
             gameStatus = _status;
     }
 
+    //Get the current game status
+    public GAMESTATUS GetCurrentStatus
+    {
+        get { return gameStatus; }
+    }
+
     //Singleton's GameManager instance
     public static GameManager Instance
     {
@@ -70,7 +81,10 @@ public class GameManager : MonoBehaviour
         private set { instance = value; }
     }
 
-
+    private void OnDestroy()
+    {
+        Enemy.OnDie -= UpdateKills;   
+    }
 }
 
 //status

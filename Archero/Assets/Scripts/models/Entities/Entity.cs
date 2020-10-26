@@ -25,12 +25,6 @@ public abstract class Entity : MonoBehaviour, IEntity
 
     //Shot Target virtual object
     public virtual void ShotTarget(Transform _target) { }
-    
-    //Trigget the shot 
-    private void OnTriggerEnter(Collider other)
-    {
-        //receive the shot
-    }
 
     ///Damage received affected in life value
     public virtual void Damage(float _hit)

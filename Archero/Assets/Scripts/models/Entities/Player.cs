@@ -24,16 +24,20 @@ public class Player : Entity
     {
         myWeapon = GetComponent<Weapon>();
         input = GetComponent<InputReader>();
+        
         canShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(GameManager.Instance.GetCurrentStatus == GAMESTATUS.INGAMEPLAY)
+        {
+            Move();
 
-        if(CurrentState == STATE.STANDING)
-            OnShot();
+            if (CurrentState == STATE.STANDING)
+                OnShot();
+        }
     }
 
     //Closest Enemy to player
@@ -72,12 +76,13 @@ public class Player : Entity
     //Move object
     void Move()
     {
-        targetPosition = input.MoveInput();
-        if (targetPosition != null)
-        {
-            var _move = new MoveCommand(targetPosition.Value, this);
-            _move.Execute();
-        }
+            targetPosition = input.MoveInput();
+            if (targetPosition != null)
+            {
+                var _move = new MoveCommand(targetPosition.Value, this);
+                _move.Execute();
+            }
+        
     }
 
     //override the original method related to make moviment
