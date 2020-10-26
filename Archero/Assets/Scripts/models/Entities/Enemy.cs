@@ -38,12 +38,6 @@ public class Enemy : Entity
         }
     }
 
-    public override void Damage(float _hit)
-    {
-        base.Damage(_hit);
-        OnDie(this);
-    }
-
     //Shot on target 
     public override void ShotTarget(Transform _target)
     {

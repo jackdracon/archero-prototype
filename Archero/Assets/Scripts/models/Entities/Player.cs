@@ -31,12 +31,15 @@ public class Player : Entity
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.GetCurrentStatus == GAMESTATUS.INGAMEPLAY)
+        if (!GameManager.Instance.IsPaused)
         {
-            Move();
+            if (GameManager.Instance.GetCurrentStatus == GAMESTATUS.INGAMEPLAY)
+            {
+                Move();
 
-            if (CurrentState == STATE.STANDING)
-                OnShot();
+                if (CurrentState == STATE.STANDING)
+                    OnShot();
+            }
         }
     }
 

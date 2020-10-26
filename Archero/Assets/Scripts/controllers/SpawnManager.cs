@@ -19,11 +19,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField, Tooltip("Player prefab")]
     private GameObject player;
 
+    //enemies created 
+    private int currentEnemies = 0;
+
     //Spawn objects related to enemy Collection
     private GameObject[] spawnEnemyObjs;
-
-    //Key - Spawn Object | Value - Enemy 
-    private Dictionary<GameObject, GameObject> spawnedEnemies;
     
     //Spawn Player 
     private GameObject spawnPlayer;
@@ -33,11 +33,6 @@ public class SpawnManager : MonoBehaviour
         spawnEnemyObjs = GameObject.FindGameObjectsWithTag(spawnEnemyTag);
 
         spawnPlayer = GameObject.FindGameObjectWithTag(spawnPlayerTag);
-    }
-
-    private void Start()
-    {
-        //CreatePlayer();
     }
 
     //Create Player 
@@ -62,6 +57,7 @@ public class SpawnManager : MonoBehaviour
         GameObject _obj = PickEnemy();
         GameObject _enemy = Instantiate(_obj) as GameObject;
         _enemy.transform.position = _spawnPoint.transform.position;
+        currentEnemies++;
     }
 
     //Select enemy from enemies's array
@@ -69,5 +65,11 @@ public class SpawnManager : MonoBehaviour
     {
         int _id = UnityEngine.Random.Range(0, enemies.Length - 1);
         return enemies[_id];
+    }
+
+    //Get enemies count 
+    public int GetEnemiesCount
+    {
+        get { return currentEnemies; }
     }
 }
